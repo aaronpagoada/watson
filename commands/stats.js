@@ -63,7 +63,7 @@ module.exports = {
                             .addField('Days Tracked', difference + 1, true)
                         message.channel.send(statsEmbed);
                     }
-                }else{ //IF USER IS NOT FOUND IN FILE DATABASE
+                }else{ //IF USER IS NOT FOUND
                     const notEmbed = new Discord.MessageEmbed()
                         .setColor('#90271b')
                         .setTitle(`You're not being tracked, ${message.author.username}!`)
