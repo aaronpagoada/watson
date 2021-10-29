@@ -6,7 +6,7 @@ module.exports = {
     description: 'Returns user statistics',
     cooldown: 1,
     execute(message){
-        function findObjectByKey(array, key, value){
+        function findObjectByKey(array, key, value){ //FUNCTIONS FINDS USER IN FILE DATABASE
             for(let i = 0; i < array.length; i++){
                 if(array[i][key] === value){
                     return array[i];
@@ -25,7 +25,7 @@ module.exports = {
                 let userData = JSON.parse(jsonData);
                 let userObject = findObjectByKey(userData, 'name', message.author.tag);
 
-                if(userObject != null){
+                if(userObject != null){ //IF USER IS FOUND
                     let today = new Date();
                     let year = today.getFullYear();
                     let month = today.getMonth();
@@ -36,7 +36,7 @@ module.exports = {
                     let firstReq = new Date(userObject.firstRequest);
                     let difference = (Math.floor(dateToday.getTime() - firstReq.getTime())) / (1000 * 60 * 60 * 24);
 
-                    if(difference === 0){
+                    if(difference === 0){ //IF DIFFERENCE BETWEEN THIS REQUEST AND FIRST REQUEST IS 0 
                         let averageIntake = userObject.totalIntake / 1;
 
                         const statsEmbed = new Discord.MessageEmbed()
@@ -49,7 +49,7 @@ module.exports = {
                             .addField('\u200B', '\u200B', true)
                             .addField('Days Tracked', difference + 1, true)
                         message.channel.send(statsEmbed);
-                    }else{
+                    }else{ //IF DIFFERENCE BETWEEN THIS REQUEST AND FIRST REQUEST IS NOT 0
                         let averageIntake = userObject.totalIntake / (difference + 1);
 
                         const statsEmbed = new Discord.MessageEmbed()
@@ -63,7 +63,7 @@ module.exports = {
                             .addField('Days Tracked', difference + 1, true)
                         message.channel.send(statsEmbed);
                     }
-                }else{
+                }else{ //IF USER IS NOT FOUND IN FILE DATABASE
                     const notEmbed = new Discord.MessageEmbed()
                         .setColor('#90271b')
                         .setTitle(`You're not being tracked, ${message.author.username}!`)
