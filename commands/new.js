@@ -17,13 +17,13 @@ module.exports = {
                 let existingDataArray = new Array(userData);
                 let userDataString = JSON.stringify(userData, null, 2);
 
-                if(userDataString.includes(message.author.tag)){
+                if(userDataString.includes(message.author.tag)){ //IF USER ALREADY IN FILE DATABASE
                     const alreadyEmbed = new Discord.MessageEmbed()
                         .setColor('#90271b')
                         .setTitle(`You\'re already being logged, ${message.author.username}! No need for two of you.`)
                     
                     message.channel.send(alreadyEmbed);
-                }else{
+                }else{ //IF USER NOT IN FILE DATABASE
                     let rewriteDataArray = new Array();
                     let today = new Date();
                     let year = today.getFullYear();
@@ -38,8 +38,8 @@ module.exports = {
                             firstRequest: [year, month + 1, day]
                     }
 
-                    if(userDataString.length > 2){
-                        for(let i = 0; i < existingDataArray[0].length; i++){
+                    if(userDataString.length > 2){ //array magic
+                        for(let i = 0; i < existingDataArray[0].length; i++){ 
                             rewriteDataArray.push(existingDataArray[0][i]);
                         }
                     }
