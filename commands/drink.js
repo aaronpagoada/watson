@@ -9,7 +9,7 @@ module.exports = {
     execute(message, args){
         if(!args[0] || args[0] == 0){
             return message.reply('Please provide the number of bottles!');
-        }else if(Number(args[0]) > 15 && Number(args[0]) < -4){
+        }else if(Number(args[0]) > 15 || Number(args[0]) < -4){
             const invEmbed = new Discord.MessageEmbed()
                 .setColor('#de1f22')
                 .setTitle(`That doesn\'t make any sense, ${message.author.username}.`)
